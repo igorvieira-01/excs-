@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformador de Texto</title>
+    <style>
+        form, .resultado {
+            margin: 20px auto;
+            width: 80%;
+            text-align: center;
+        }
+        .resultado {
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Transformador de Texto</h1>
+    
+    <form id="formulario">
+        <input type="text" id="campoTexto" placeholder="Digite uma frase aqui" style="width: 60%; padding: 8px;">
+        <button type="button" onclick="converterMaiuscula()">Maiúscula</button>
+        <button type="button" onclick="separarPalavras()">Separar</button>
+    </form>
+
+    <div id="resultado" class="resultado"></div>
+
+    <script>
+        function converterMaiuscula() {
+            const texto = document.getElementById("campoTexto").value;
+
+            document.getElementById("resultado").innerHTML = texto.toUpperCase();
+        }
+
+        function separarPalavras() {
+            const texto = document.getElementById("campoTexto").value;
+
+            const palavrasSeparadas = texto.split(" ").join("<br>");
+
+            document.getElementById("resultado").innerHTML = palavrasSeparadas;
+        }
+    </script>
+</body>
+</html>

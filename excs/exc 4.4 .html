@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .calculadora {
+            width: 260px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .display {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.5em;
+            text-align: right;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 3px;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+        }
+        .buttons button {
+            font-size: 1.2em;
+            padding: 15px;
+            background-color: #eee;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .buttons button:hover {
+            background-color: #ddd;
+        }
+        .buttons .equals {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculadora">
+    <input type="text" id="display" class="display" disabled>
+
+    <div class="buttons">
+        <button onclick="addToDisplay('7')">7</button>
+        <button onclick="addToDisplay('8')">8</button>
+        <button onclick="addToDisplay('9')">9</button>
+        <button onclick="addToDisplay('/')">/</button>
+
+        <button onclick="addToDisplay('4')">4</button>
+        <button onclick="addToDisplay('5')">5</button>
+        <button onclick="addToDisplay('6')">6</button>
+        <button onclick="addToDisplay('*')">*</button>
+
+        <button onclick="addToDisplay('1')">1</button>
+        <button onclick="addToDisplay('2')">2</button>
+        <button onclick="addToDisplay('3')">3</button>
+        <button onclick="addToDisplay('-')">-</button>
+
+        <button onclick="addToDisplay('0')">0</button>
+        <button onclick="addToDisplay('.')">.</button>
+        <button onclick="calculate()" class="equals">=</button>
+        <button onclick="addToDisplay('+')">+</button>
+
+        <button onclick="power()">x^y</button>
+        <button onclick="squareRoot()">√x</button>
+        <button onclick="round()">Arred</button>
+        <button onclick="clearDisplay()">C</button>
+    </div>
+</div>
+
+<script>
+    function addToDisplay(value) {
+        document.getElementById('display').value += value;
+    }
+
+    function clearDisplay() {
+        document.getElementById('display').value = '';
+    }
+
+    function calculate() {
+        try {
+            const result = eval(document.getElementById('display').value);
+            document.getElementById('display').value = result;
+        } catch (error) {
+            alert("Expressão inválida");
+        }
+    }
+
+    function power() {
+        let base = prompt("Digite a base:");
+        let exponent = prompt("Digite o expoente:");
+        if (base !== null && exponent !== null) {
+            let result = Math.pow(Number(base), Number(exponent));
+            document.getElementById('display').value = result;
+        }
+    }
+
+    function squareRoot() {
+        let number = prompt("Digite o número para calcular a raiz quadrada:");
+        if (number !== null) {
+            let result = Math.sqrt(Number(number));
+            document.getElementById('display').value = result;
+        }
+    }
+
+    function round() {
+        let number = prompt("Digite o número para arredondar:");
+        if (number !== null) {
+            let result = Math.round(Number(number));
+            document.getElementById('display').value = result;
+        }
+    }
+</script>
+
+</body>
+</html>

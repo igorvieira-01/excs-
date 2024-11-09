@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrada de Nomes</title>
+    <style>
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: black;
+        }
+        th {
+            font-size: 15px;
+            font-weight: 700;
+            background-color: brown;
+            color: black;
+            padding: 8px;
+        }
+        td {
+            font-size: 14px;
+            background-color: yellow;
+            color: black;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Lista de Nomes</h1>
+    <table id="tabelaNomes">
+        <tr>
+            <th>Índice</th>
+            <th>Nome</th>
+        </tr>
+    </table>
+
+    <script>
+        let index = 1;
+        
+        function adicionarNomes() {
+            while (true) {
+                let nome = prompt("Digite um nome (ou clique em 'Cancelar' para finalizar):");
+
+                if (nome === null) break;
+
+                let tabela = document.getElementById("tabelaNomes");
+                let novaLinha = tabela.insertRow();
+                let celulaIndice = novaLinha.insertCell(0);
+                let celulaNome = novaLinha.insertCell(1);
+
+                celulaIndice.textContent = index;
+                celulaNome.textContent = nome;
+
+                index++;
+            }
+        }
+
+        adicionarNomes();
+    </script>
+</body>
+</html>

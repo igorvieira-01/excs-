@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício de Abas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .tab {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .tab button {
+            background-color: #b3e36f;
+            border: 1px solid #000;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .tab button.active {
+            background-color: #8cc63f;
+        }
+        .content {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #000;
+            background-color: #f5e56b;
+            display: none;
+            text-align: center;
+        }
+        #cronometroDisplay {
+            font-size: 2em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 style="text-align: center;">Exercício 5 - Abas</h1>
+
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'cronometro')">Cronômetro</button>
+        <button class="tablinks" onclick="openTab(event, 'slideshow')">Slide Show</button>
+        <button class="tablinks" onclick="openTab(event, 'tabuada')">Tabuada</button>
+    </div>
+
+    <div id="cronometro" class="content">
+        <div id="cronometroDisplay">0</div>
+    </div>
+
+    <div id="slideshow" class="content">
+        <img id="slideImage" src="./tenis/download (1).jpg"  alt="Imagem do Slide" style="width: 200px;">
+        <img id="slideImage" src="./tenis/download.jpg"  alt="Imagem do Slide" style="width: 200px;">
+        <img id="slideImage" src="./tenis/images (1).jpg"  alt="Imagem do Slide" style="width: 200px;">
+        <img id="slideImage" src="./tenis/images (2).jpg"  alt="Imagem do Slide" style="width: 200px;">
+        <img id="slideImage" src="./tenis/images.jpg"  alt="Imagem do Slide" style="width: 200px;">
+        <br>
+        <button onclick="anteriorImagem()">Anterior</button>
+        <button onclick="proximaImagem()">Próxima</button>
+    </div>
+
+    <div id="tabuada" class="content">
+        <p>Digite o número da tabuada que deseja calcular:</p>
+        <input type="number" id="numeroTabuada">
+        <button onclick="calcularTabuada()">Calcular</button>
+        <div id="resultadoTabuada"></div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            let i, tabcontent, tablinks;
+
+            tabcontent = document.getElementsByClassName("content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        let cronometro = 0;
+        setInterval(() => {
+            document.getElementById("cronometroDisplay").textContent = cronometro++;
+        }, 1000);
+
+        let imagens = ["imagem1.jpg", "imagem2.jpg", "imagem3.jpg", "imagem4.jpg", "imagem5.jpg"];
+        let indiceAtual = 0;
+
+        function proximaImagem() {
+            indiceAtual = (indiceAtual + 1) % imagens.length;
+            document.getElementById("slideImage").src = imagens[indiceAtual];
+        }
+
+        function anteriorImagem() {
+            indiceAtual = (indiceAtual - 1 + imagens.length) % imagens.length;
+            document.getElementById("slideImage").src = imagens[indiceAtual];
+        }
+
+        function calcularTabuada() {
+            let numero = document.getElementById("numeroTabuada").value;
+            let resultadoDiv = document.getElementById("resultadoTabuada");
+            resultadoDiv.innerHTML = "";
+
+            if (numero === "") {
+                alert("Por favor, insira um número.");
+                return;
+            }
+
+            for (let i = 1; i <= 10; i++) {
+                let resultado = `${numero} x ${i} = ${numero * i}`;
+                let p = document.createElement("p");
+                p.textContent = resultado;
+                resultadoDiv.appendChild(p);
+            }
+        }
+    </script>
+
+
+</body>
+</html>
